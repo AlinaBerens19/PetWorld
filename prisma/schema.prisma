@@ -54,6 +54,7 @@ model Pet {
   kind     String?
   breed    String?
   imageSrc String?
+  gender   String    @default(value: "male")
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
@@ -66,6 +67,7 @@ model Listing {
   category    String   @default("sale")
   description String?
   price       Int?
+  gender      String?
   name        String?
   age         Int?
   kind        String?

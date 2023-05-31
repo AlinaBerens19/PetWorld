@@ -1,40 +1,98 @@
-'use client'
+import { BiHeartCircle, BiHome, BiMoney } from "react-icons/bi";
+import { useState } from "react";
 
-import { BiHeartCircle, BiHome, BiMoney } from "react-icons/bi"
-
-const CategoryOptions = () => {
-  return (
-    <div className="flex flex-row justify-between py-10 px-5">
-
-        <div className="flex flex-row gap-3">
-            <div 
-                onClick={() => {console.log("sale")}}
-                className="text-neutral-500 text-lg font-medium">
-                SALE
-            </div>
-            <BiMoney className="text-3xl text-neutral-400 cursor-pointer" /> 
-        </div>   
-
-        <div 
-            onClick={() => {console.log("pairing")}}
-            className="flex flex-row gap-3">
-            <div className="text-neutral-500 text-lg font-medium">
-                PAIRING
-            </div>
-            <BiHeartCircle className="text-3xl text-neutral-400 cursor-pointer" />  
-        </div> 
-
-        <div 
-            onClick={() => {console.log("adoption")}}
-            className="flex flex-row gap-3">
-            <div className="text-neutral-500 text-lg font-medium">
-                ADOPTION
-            </div>
-            <BiHome className="text-3xl text-neutral-400 cursor-pointer" />
-        </div>     
-    
-    </div>
-)
+interface CategoryOptionsProps {
+  category: string;
+  onSearchChange: (value: string) => void;
 }
 
-export default CategoryOptions
+interface ClickedStates {
+  [key: string]: boolean;
+}
+
+const CategoryOptions: React.FC<CategoryOptionsProps> = ({
+  category,
+  onSearchChange,
+}) => {
+  const [clickedStates, setClickedStates] = useState<ClickedStates>({
+    sale: true,
+    pairing: false,
+    adoption: false,
+  });
+
+  const handleClick = (category: string) => {
+    setClickedStates((prevState) => {
+      const newState = { ...prevState };
+  
+      Object.keys(newState).forEach((key) => {
+        if (key !== category) {
+          newState[key] = false;
+        } else {
+          newState[key] = !prevState[key];
+        }
+      });
+  
+      return newState;
+    });
+  };
+
+  return (
+    <div className="flex flex-row justify-between py-10 px-5">
+      <div
+        id="sale"
+        className={`flex flex-row gap-3 ${
+          clickedStates.sale ? "text-black" : "text-neutral-500"
+        }`}
+        onClick={() => {
+          onSearchChange("sale");
+          handleClick("sale");
+        }}
+      >
+        <div className="text-lg font-medium">SALE</div>
+        <BiMoney
+          className={`text-3xl ${
+            clickedStates.sale ? "text-black" : "text-neutral-400"
+          } cursor-pointer`}
+        />
+      </div>
+
+      <div
+        id="pairing"
+        className={`flex flex-row gap-3 ${
+          clickedStates.pairing ? "text-black" : "text-neutral-500"
+        }`}
+        onClick={() => {
+          onSearchChange("pairing");
+          handleClick("pairing");
+        }}
+      >
+        <div className="text-lg font-medium">PAIRING</div>
+        <BiHeartCircle
+          className={`text-3xl ${
+            clickedStates.pairing ? "text-black" : "text-neutral-400"
+          } cursor-pointer`}
+        />
+      </div>
+
+      <div
+        id="adoption"
+        className={`flex flex-row gap-3 ${
+          clickedStates.adoption ? "text-black" : "text-neutral-500"
+        }`}
+        onClick={() => {
+          onSearchChange("adoption");
+          handleClick("adoption");
+        }}
+      >
+        <div className="text-lg font-medium">ADOPTION</div>
+        <BiHome
+          className={`text-3xl ${
+            clickedStates.adoption ? "text-black" : "text-neutral-400"
+          } cursor-pointer`}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default CategoryOptions;

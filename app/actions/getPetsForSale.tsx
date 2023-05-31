@@ -4,9 +4,9 @@ import { Listing } from "@prisma/client";
 export default async function getPetsForSale() {
     try {
         const listings: Listing[] = await prisma.listing.findMany({
-            where: {
-                category: 'Sale'
-            },
+            // where: {
+            //     category: 'Sale'
+            // },
             orderBy: {
                 createdAt: 'desc'
             },

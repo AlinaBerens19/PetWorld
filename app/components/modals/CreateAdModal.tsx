@@ -61,29 +61,13 @@ const CreateAdModal = () => {
         description: '',
         price: 0,
         location: '',
+        gender: 'male',
         firstImage: '',
         secondImage: '',
         thirdImage: '',
         fourthImage: '',
     },
   });
-
-  let upload_images = Array<string>(4);
-
-  const name = watch('name')
-  const age = watch('age')
-  const kind = watch('kind')
-  const breed = watch('breed')
-  const imageSrc = watch('imageSrc')
-  const category = watch('category')
-  const description = watch('description')
-  const price = watch('price')
-  const location = watch('location')
-  const firstImage = watch('firstImage')
-  const secondImage = watch('secondImage')
-  const thirdImage = watch('thirdImage')
-  const fourthImage = watch('fourthImage')
-
 
   const actionLabel = useMemo(() => {
     if (step === STEPS.PRICE) {
@@ -137,14 +121,14 @@ const CreateAdModal = () => {
   let body = (
     <div className="flex flex-col gap-2 justify-top">
       <div className="flex flex-col gap-2">
-        <h2 className="text-neutral-600 text-2xl">Have not yet profile for your pet?</h2>
-        <p className="text-neutral-600 text-xl">Please click NEXT to continue</p>
+        <h2 className="text-neutral-800 text-lg">Have not yet profile for your pet?</h2>
+        <p className="text-neutral-800 text-lg">Please click NEXT to continue</p>
       </div>
     </div>
   )
 
   if(step === STEPS.PET_PROFILE) {
-    body = <PetProfileBody register={register} errors={errors} />
+    body = <PetProfileBody register={register} setValue={setValue} errors={errors} />
   }
 
   if(step === STEPS.DESCRIPTION) {

@@ -1,5 +1,4 @@
 import prisma from "@/app/libs/prismadb";
-import { format } from 'date-fns';
 
 interface IParams {
     saleId?: string

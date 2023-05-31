@@ -6,6 +6,10 @@ import HeartButton from "@/app/sale/componets/HeartButton";
 import { SafeListing } from "@/app/types";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMars } from '@fortawesome/free-solid-svg-icons';
+import { faVenus } from '@fortawesome/free-solid-svg-icons';
+import NewButton from "@/app/sale/componets/NewButton";
 
 interface PetCardProps {
   data?: SafeListing;
@@ -34,20 +38,34 @@ const PetCard: React.FC<PetCardProps> = ({
                 className="w-full h-48 sm:w-60 object-cover rounded-lg"
               />
               <HeartButton />
+              <NewButton />
               <CallButton />
           </div>
           
         ) : null}
         {
           data ? (
-            <div className="flex flex-row justify-between pt-4 items-baseline">
-              <div className="text-gray-600 items-start text-lg font-light">
-                {data?.breed ? data?.breed : 'Other'}
+            
+              <div className="flex flex-row justify-between pt-1 items-baseline">
+                <div className="flex flex-row items-center gap-2">
+                  <div className="text-gray-600 items-start text-lg font-light">
+                    {data?.name ? data?.name : 'Other'}
+                  </div>
+
+                  <div className="text-gray-600 items-center justify-center text-md font-light">
+                    ({data?.category ? data?.category : 'Other'})
+                  </div>
+
+                  <div className="text-lg text-rose-700">
+                    {data?.gender === 'femail' ? (<FontAwesomeIcon icon={faVenus} title="Female" className="cursor-pointer"/>) : (<FontAwesomeIcon icon={faMars} title="Male" className="cursor-pointer"/>)}
+                  </div>
+                </div>
+                
+                <div className="text-gray-600 items-end text-lg font-medium">
+                  ${data?.price ? data?.price : '0'}
+                </div>
               </div>
-              <div className="text-gray-600 items-end text-lg font-medium">
-                ${data?.price ? data?.price : '0'}
-              </div>
-            </div>) : null    
+            ) : null    
         }
       </div>
     </div>

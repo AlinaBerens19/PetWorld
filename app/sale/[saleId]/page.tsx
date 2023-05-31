@@ -24,7 +24,7 @@ const ListingPage = async ({ params }: { params: IParams}) => {
 
     return (
         <ClientOnly>
-          <DetailPage location={sale?.location} kind={sale.kind} breed={sale.breed} currentUser={currentUser} price={sale.price} firstImage={sale.firstImage} description={sale.description}/>
+          <DetailPage location={sale?.location} gender={sale?.gender} kind={sale.kind} breed={sale.breed} currentUser={currentUser} price={sale.price} firstImage={sale.firstImage} description={sale.description}/>
         </ClientOnly>
     )
 

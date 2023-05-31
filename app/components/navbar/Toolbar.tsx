@@ -137,7 +137,8 @@ const Toolbar: React.FC<ToolbarProps> = ({
               <DropdownMenu
                 items={["Account", "Create Ad", "Membership", "My Ads", "My Favorites", "My Messages", "My Orders", "My Reviews", "My Settings", "My Wallet", "My Wishlist"]} 
                 isOpen={isOpen_dashboard} 
-                onClick={(item) => handleItemClick(item)}           
+                onClick={(item) => handleItemClick(item)} 
+                id="dashboard"          
               />
             )}
           </div>
@@ -155,7 +156,8 @@ const Toolbar: React.FC<ToolbarProps> = ({
             <DropdownMenu
               items={["Meal", "Toys", "Treats", "Accessories", "Supplements", "Grooming", "Health", "Training", "Travel", "Clothing", "Gifts"]} 
               isOpen={isOpen_store} 
-              onClick={handleStoreClick}           
+              onClick={handleStoreClick}    
+              id="store"       
             />
           )}
           </div>
@@ -174,10 +176,11 @@ const Toolbar: React.FC<ToolbarProps> = ({
             />
             {isOpen_more && (
               <DropdownMenu
-                items={["About us", "FAQ", "Contact us"]} 
-                isOpen={isOpen_more} 
-                onClick={handleMoreClick}           
-              />
+                items={["About us", "FAQ", "Contact us"]}
+                isOpen={isOpen_more}
+                onClick={handleMoreClick} 
+                id={"more"}              
+            />
             )}
         </div>
 

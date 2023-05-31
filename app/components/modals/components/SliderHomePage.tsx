@@ -1,32 +1,35 @@
 'use client';
 
-import { useState } from "react";
-import catBlueEyes from '@/public/images/cat_blue_eyes.jpg';
-import dogBeach from '@/public/images/dog_beach.jpg';
-import parrot from '@/public/images/parrot.jpg';
-import dogCuddle from '@/public/images/dog_cuddle.jpg';
+import { useState, useEffect } from "react";
+import catBlueEyes from "@/public/images/cat_blue_eyes.jpg";
+import dogBeach from "@/public/images/dog_beach.jpg";
+import parrot from "@/public/images/parrot.jpg";
+import dogCuddle from "@/public/images/dog_cuddle.jpg";
 
 const SliderHomePage = () => {
-
   const [currentSlide, setCurrentSlide] = useState(0);
-  const images = [
-    catBlueEyes.src,
-    dogBeach.src,
-    parrot.src,
-    dogCuddle.src,
-    // Add more image URLs here
-  ];
+  const images = [catBlueEyes.src, dogBeach.src, parrot.src, dogCuddle.src];
 
   const handlePrevSlide = () => {
-    setCurrentSlide((prevSlide) => prevSlide === 0 ? images.length - 1 : prevSlide - 1);
+    setCurrentSlide((prevSlide) =>
+      prevSlide === 0 ? images.length - 1 : prevSlide - 1
+    );
   };
 
   const handleNextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
   return (
-    <div className="relative flex flex-row w-full h-full bg-yellow-500 sm:w-auto md:w-auto md:flex-1 sm:flex-1">
+    <div className="relative flex flex-row w-full transition ease-in-out h-screen bg-yellow-500 sm:w-auto md:w-auto md:flex-1 sm:flex-1">
       <img
         src={images[currentSlide]}
         alt="Slider Image"
@@ -47,9 +50,9 @@ const SliderHomePage = () => {
           &gt;
         </button>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
 export default SliderHomePage;
+

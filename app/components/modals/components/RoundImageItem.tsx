@@ -4,12 +4,14 @@ interface RoundImageItemProps {
     src: string;
     alt: string;
     text: string;
+    onClick?: () => void;
 }
 
 const RoundImageItem: React.FC<RoundImageItemProps> = ({
     src,
     alt,
     text,
+    onClick
 }) => {
   return (
     <div className="flex flex-col items-center justify-center gap-3 text-neutral-600 rounded-image">  
@@ -20,6 +22,7 @@ const RoundImageItem: React.FC<RoundImageItemProps> = ({
                 src={src} 
                 alt={alt}
                 className="w-full h-full object-cover"
+                onClick={onClick}
             />
         </div>
 

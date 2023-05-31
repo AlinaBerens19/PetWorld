@@ -13,6 +13,7 @@ interface DetailPageProps {
   price?: number | null;
   currentUser?: SafeUser | null;
   description?: string | null;
+  gender?: string | null;
 }
 
 const DetailPage: React.FC<DetailPageProps> = ({
@@ -23,29 +24,54 @@ const DetailPage: React.FC<DetailPageProps> = ({
   firstImage,
   price,
   description,
-  currentUser
+  currentUser,
+  gender
 }) => {
 
   console.log('CURRENT USER ==> ', currentUser)
 
-  return (
-    <div className="max-w-screen-lg mx-auto">
+    return (
+      <div className="max-w-screen-lg mx-auto">
         <div className="flex flex-col px-4 py-20">
-          <img 
+
+        <div className="flex flex-row w-full gap-1"> 
+          <img
             src={firstImage ? firstImage : ''}
             alt={pet_name ? pet_name : 'No Name'}
-            className="w-full object-contain pt-5"
+            className="w-[100vh] h-1/2 object-contain pt-5 sm:rounded-tl-xl sm:rounded-bl-xl"
           />
+
+          <div className="flex flex-col pt-5">
+            <img
+              src={firstImage ? firstImage : ''}
+              alt={pet_name ? pet_name : 'No Name'}
+              className="w-[33vh] h-1/2 object-contain"
+            />
+
+            <img
+              src={firstImage ? firstImage : ''}
+              alt={pet_name ? pet_name : 'No Name'}
+              className="w-[33vh] h-1/2 object-contain"
+            />
+
+            <img
+              src={firstImage ? firstImage : ''}
+              alt={pet_name ? pet_name : 'No Name'}
+              className="w-[33vh] h-1/2 object-contain rounded-br-xl"
+            />
+          </div>
+          
+        </div>
 
             <div className="flex flex-col gap-4 pt-5">
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-between">
+            <div className="flex flex-col sm:flex-row gap-4 justify-start">
               <div className="flex flex-row items-baseline justify-start gap-4">
-                <div className="text-bold text-neutral-600 text-4xl">
-                  {kind && kind}
-                </div>
-                <div className="text-light text-neutral-600 text-2xl">
+                <div className="text-bold  text-2xl">
                   {breed && breed}
+                </div>
+                <div className="text-light text-xl pe-10">
+                  ({kind && kind})
                 </div>
               </div>
 
@@ -56,24 +82,25 @@ const DetailPage: React.FC<DetailPageProps> = ({
               </div>  
             </div>
 
+            <div className="flex flex-row text-neutral-800 text-xl">
+              {gender && gender}
+            </div>
+
             <div className="flex flex-row text-neutral-500 text-lg">
               {location && location}
-              <BiMapPin className="text-lg text-neutral-500 cursor-pointer" />
+              <BiMapPin className="text-neutral-800 text-xl cursor-pointer" />
             </div>
 
             <div className="flex flex-row items-center justify-start gap-4 pb-5">
-              <div className="text-bold text-neutral-600 text-2xl">
+              <div className="text-bold text-neutral-800 text-xl">
                 ${price && price}
               </div>  
             </div>
 
-            <hr />
-
-            <div className="flex flex-row items-center justify-start gap-4 text-light text-lg text-neutral-600">
+            <div className="flex flex-row items-center justify-start gap-4 font-light text-lg text-neutral-800">
               {description && description}
             </div> 
 
-            <hr /> 
             </div>
           </div>
         </div>

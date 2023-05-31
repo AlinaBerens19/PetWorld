@@ -3,10 +3,13 @@
 import useScreenSizeDetector from "@/app/hooks/useScreenSizeDetector";
 import Container from "../Container";
 import RoundImageItem from "./components/RoundImageItem";
+import { useRouter } from "next/navigation";
+import { ro } from "date-fns/locale";
 
 const CategoriesModel = () => {
 
   const isSmall = useScreenSizeDetector();
+  const router = useRouter();
 
   return (
     <Container>
@@ -16,6 +19,7 @@ const CategoriesModel = () => {
           src="https://cdn.pixabay.com/photo/2019/04/22/15/35/persians-4146814__340.jpg"
           alt="Sale"
           text="Sale"
+          onClick={() => router.push('/sale')}
         />
         <RoundImageItem 
           src="https://cdn.pixabay.com/photo/2015/11/17/13/13/bulldog-1047518_960_720.jpg"
