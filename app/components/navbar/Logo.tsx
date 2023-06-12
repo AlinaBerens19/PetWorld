@@ -10,7 +10,7 @@ const Logo: React.FC = () => {
   return (
     <div 
       onClick={() => router.push('/home')}
-      className="md:block xl:block cursor-pointer">
+      className="md:block xl:block cursor-pointer w-auto h-auto">
         <Image 
           alt='Logo'
           src='/images/logo.webp'

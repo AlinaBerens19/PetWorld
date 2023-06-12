@@ -1,8 +1,11 @@
 'use client'
 
 
+import useFavorite from "@/app/hooks/useFavourited";
 import { SafeUser } from "@/app/types"
 import { BiHeart, BiMapPin, BiMessage, BiPhone } from "react-icons/bi";
+import HeartButton from "../componets/HeartButton";
+import { set } from "date-fns";
 
 interface DetailPageProps {
   location?: string | null;
@@ -14,6 +17,7 @@ interface DetailPageProps {
   currentUser?: SafeUser | null;
   description?: string | null;
   gender?: string | null;
+  id?: string | null;
 }
 
 const DetailPage: React.FC<DetailPageProps> = ({
@@ -25,10 +29,16 @@ const DetailPage: React.FC<DetailPageProps> = ({
   price,
   description,
   currentUser,
-  gender
+  gender,
+  id
 }) => {
 
-  console.log('CURRENT USER ==> ', currentUser)
+    console.log('CURRENT USER ==> ', currentUser)
+    console.log('LISTING ID ==> ', id)
+
+    const favorited = useFavorite({ listingId: id || "", currentUser: currentUser });
+
+    console.log('FAVORITED ==> ', favorited)
 
     return (
       <div className="max-w-screen-lg mx-auto">
@@ -78,7 +88,12 @@ const DetailPage: React.FC<DetailPageProps> = ({
               <div className="flex flex-row items-center justify-start gap-4">
                 <BiMessage className="text-4xl text-neutral-600 cursor-pointer" />
                 <BiPhone className="text-4xl text-neutral-600 cursor-pointer" />
-                <BiHeart className="text-4xl text-neutral-600 cursor-pointer" />
+                <HeartButton
+                  onClick={(e: React.MouseEvent<HTMLDivElement>) => favorited.toggleFavorite(e)}
+                  isClicked={favorited.hasFavorited}
+                  className="text-4xl text-neutral-600 cursor-pointer"
+                />
+
               </div>  
             </div>
 

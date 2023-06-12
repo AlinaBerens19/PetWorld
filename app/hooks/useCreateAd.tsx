@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 
-interface CreateAdState {
+export interface CreateAdState {
     isOpen: boolean;
     open: () => void;
     close: () => void;

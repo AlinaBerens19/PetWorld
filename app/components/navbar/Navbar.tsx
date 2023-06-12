@@ -11,6 +11,7 @@ import SearchModal from "../modals/SearchModal";
 import useSearchModal from "@/app/hooks/useSearchModal";
 import { signOut } from "next-auth/react";
 import useScreenSizeDetector from "@/app/hooks/useScreenSizeDetector";
+import { useRouter } from "next/navigation";
 
 interface NavbarProps {
   currentUser?: SafeUser | null;
@@ -22,10 +23,11 @@ const Navbar: React.FC<NavbarProps> = ({
   const [showMenu, setShowMenu] = useState(false);
   const searchModal = useSearchModal();
   const isSmall = useScreenSizeDetector();
+  const router = useRouter();
 
   const logOut = () => {
-    console.log("log out");
     signOut();
+    router.push('/');
   };
 
   const handleMenuClick = () => {
@@ -46,8 +48,11 @@ const Navbar: React.FC<NavbarProps> = ({
         <div className="xl:py-5 md:py-4 sm:py-4 py-3">
           <Container>
             <div className="flex flex-col">
-              <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
-                <Logo />
+              <div className="flex flex-row items-center justify-between sm:justify-start gap-3 md:gap-0">
+                <div className="pe-20 ps-4">
+                  <Logo />
+                </div>
+                
                 <Toolbar logOut={logOut} onClick={handleMenuClick} currentUser={currentUser} isSmall={isSmall}/>
               </div>
               

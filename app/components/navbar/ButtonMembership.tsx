@@ -16,7 +16,7 @@ const ButtonMembership: React.FC<ButtonMembershipProps> = ({
       onClick={onClick}
       className={`
             ${outline ? "bg-white text-black" : "membership-button text-black"}
-            rounded-full font-semibold text-md py-2 px-8 md:py-3 md:px-6 cursor-pointer
+            rounded-full font-semibold text-md py-2 px-8 ml-20 md:py-3 md:px-6 cursor-pointer
         `}
     >
       <h5>{title}</h5>

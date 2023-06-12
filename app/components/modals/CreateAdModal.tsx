@@ -147,6 +147,7 @@ const CreateAdModal = () => {
             <div className="flex flex-row justify-center items-center">
               {imageProperties.map((property, index) => (
                 <ImageUpload
+                  size={50}
                   key={property}
                   onChange={(value) => setCustomValue(property, value)}
                   value={watch(property)}

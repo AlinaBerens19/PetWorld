@@ -6,6 +6,7 @@ import PetGender from "./PetGender";
 import PetsCategoryField from "./PetsCategoryField";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import FilterForPriceAndLocation from "./FilterForPriceAndLocation";
 
 
 const PetsFilter = () => {
@@ -13,6 +14,7 @@ const PetsFilter = () => {
     const [searchKind, setSearchKind] = useState("");
     const [searchCategory, setSearchCategory] = useState("sale");
     const [searchGender, setSearchGender] = useState("femail");
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
 
     const handleSearchKindChange = (value: string) => {
         setSearchKind(value);
@@ -55,8 +57,14 @@ const PetsFilter = () => {
                         <CategoryOptions category="category" onSearchChange={handleSearchCategoryChange}/>
                         <PetGender category="gender" onSearchChange={handleSearchGenderChange}/>
                         <div className="flex flex-row justify-center">
-                            <BiFilter className="text-5xl text-neutral-400 cursor-pointer" />
+                            <BiFilter 
+                                onClick={() => setIsFilterOpen(!isFilterOpen)}
+                                className="text-5xl text-neutral-400 cursor-pointer" />
                         </div>
+                        <div className="px-4">
+                            {isFilterOpen && (<FilterForPriceAndLocation isOpen={isFilterOpen} />)}
+                        </div>
+                        
                         <div 
                             onClick={handleSearch}
                             className="flex flex-row gap-2 items-center text-xl text-neutral-700 justify-center">

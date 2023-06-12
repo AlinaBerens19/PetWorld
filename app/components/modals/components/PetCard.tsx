@@ -3,22 +3,28 @@
 
 import CallButton from "@/app/sale/componets/CallButton";
 import HeartButton from "@/app/sale/componets/HeartButton";
-import { SafeListing } from "@/app/types";
+import { SafeListing, SafeUser } from "@/app/types";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMars } from '@fortawesome/free-solid-svg-icons';
 import { faVenus } from '@fortawesome/free-solid-svg-icons';
 import NewButton from "@/app/sale/componets/NewButton";
+import useAddToWishList from "@/app/hooks/useAddToWishlist";
+import useFavorite from "@/app/hooks/useFavourited";
 
-interface PetCardProps {
+interface Props {
   data?: SafeListing;
+  currentUser?: SafeUser | null;
 }
 
-const PetCard: React.FC<PetCardProps> = ({
-  data
+
+const PetCard: React.FC<Props> = ({
+  data,
+  currentUser, 
 }) => {
 
+  const favorited = useFavorite({ listingId: data?.id ?? "", currentUser: currentUser ?? null });
   const router = useRouter();
 
   useEffect(() => {
@@ -35,9 +41,9 @@ const PetCard: React.FC<PetCardProps> = ({
               <img
                 src={data?.firstImage}
                 alt="pet"
-                className="w-full h-48 sm:w-60 object-cover rounded-lg"
+                className="sm:w-60 h-48 w-80 object-cover rounded-lg"
               />
-              <HeartButton />
+              <HeartButton isClicked={favorited.hasFavorited} onCard={true} className={"absolute top-2 left-2 flex text-4xl"} onClick={(e: React.MouseEvent<HTMLDivElement>) => favorited.toggleFavorite(e)}/>
               <NewButton />
               <CallButton />
           </div>

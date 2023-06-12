@@ -17,6 +17,8 @@ import { menuItems } from "@/app/utils";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import Footer from "./components/Footer";
 import useLoading from "@/app/hooks/useLoading";
+import ImageUpload from "../inputs/ImageUpload";
+import { watch } from "fs";
 
 
 const RegisterModal = () => {
@@ -42,8 +44,13 @@ const RegisterModal = () => {
       email: '',
       phoneNumber: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      image: '',
   }});
+
+  const onChange = () => {
+
+  }
 
   const registerModal = useRegisterModal()
   const loginModal = useLoginModal()
@@ -131,6 +138,20 @@ const RegisterModal = () => {
         </div>
       </div>
 
+      {/* <div className="flex flex-col gap-2 justify-top">
+        <div className="flex flex-col gap-2">
+          <h3 className="text-neutral-600">Upload profile photos</h3>
+          <div className="image-slider">
+            <div className="flex flex-row justify-center items-center">
+                <ImageUpload
+                  value={""} 
+                  onChange={onChange}
+                  disabled={loadingModal.isLoading}                  
+                />
+            </div>
+          </div>
+        </div>
+      </div>              */}
 
       <input
         id="password"

@@ -29,7 +29,7 @@ const SliderHomePage = () => {
   }, [images.length]);
 
   return (
-    <div className="relative flex flex-row w-full transition ease-in-out h-screen bg-yellow-500 sm:w-auto md:w-auto md:flex-1 sm:flex-1">
+    <div className="relative flex flex-row sm:h-screen sm:w-full transition ease-in-out h-auto bg-yellow-500 w-auto md:w-auto md:flex-1 sm:flex-1">
       <img
         src={images[currentSlide]}
         alt="Slider Image"

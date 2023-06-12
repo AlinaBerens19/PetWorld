@@ -11,7 +11,7 @@ interface Props {
 const DropdownMenu: React.FC<Props> = ({
   id,
   items,
-  isOpen = false,
+  isOpen,
   onClick,
   style
 }) => {

@@ -3,24 +3,29 @@
 import { CldUploadWidget } from 'next-cloudinary';
 import Image from 'next/image';
 import { useCallback } from 'react';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 import { TbPhotoPlus } from 'react-icons/tb'
 
 declare global {
   var cloudinary: any;
 }
 
-interface ImageUploadProps {
+interface ProfileImageUploadProps {
   onChange: (value: string) => void;
   value: string;
   disabled?: boolean;
   size: number;
+  className?: string | undefined,
+  register?: UseFormRegister<FieldValues> | undefined;
 }
 
-const ImageUpload: React.FC<ImageUploadProps> = ({
+const ProfileImageUpload: React.FC<ProfileImageUploadProps> = ({
   onChange,
   value,
   disabled,
-  size
+  className,
+  size,
+  register
 }) => {
 
   const handleUpload = useCallback((result: { info: { secure_url: string; }; }) => {
@@ -45,38 +50,21 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
         return (
           <div
             onClick={() => handleClick(open)}
-            className="
-              relative
-              cursor-pointer
-              hover:opacity-70
-              transition
-              border-dashed 
-              border-2 
-              p-20 
-              border-neutral-300
-              flex
-              flex-col
-              justify-center
-              items-center
-              gap-4
-              text-neutral-600
-            "
           >
             <TbPhotoPlus
               size={size}
+              className={className}
             />
-            <div className="font-semibold text-lg">
-              Click to upload
-            </div>
             {
               value && (
-                <div className="absolute inset-0 w-full h-full">
+                <div className="absolute inset-0 rounded-xl">
                   <Image
                     id={value}
                     alt = "Upload"
                     fill
                     style = {{ objectFit: 'cover' }}
                     src = {value}
+                    {...register && register("image")}
                   />
                 </div>
               )
@@ -88,4 +76,4 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   );
 }
 
-export default ImageUpload;
+export default ProfileImageUpload;

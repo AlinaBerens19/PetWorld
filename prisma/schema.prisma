@@ -12,15 +12,14 @@ datasource db {
 
 model User {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
   email         String    @unique
   emailVerified DateTime?
-  image         String?
   password      String?
   username      String?
   phone         String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+  favoriteIds   String[] @db.ObjectId
   posts         Listing[]
   profile       Profile?
   pets          Pet[]
@@ -86,11 +85,14 @@ model Profile {
   id      String  @id @default(auto()) @map("_id") @db.ObjectId
   userId  String  @unique @db.ObjectId
   name    String?
+  phone   String?
+  email   String?
   surname String?
   country String?
   city    String?
   address String?
-  zip     Int?
+  zip     String?
+  image   String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

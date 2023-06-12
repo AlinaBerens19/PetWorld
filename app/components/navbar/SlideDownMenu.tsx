@@ -7,6 +7,8 @@ import useRegisterModal from '@/app/hooks/useRegisterModal';
 import SearchModal from '../modals/SearchModal';
 import { SafeUser } from '@/app/types';
 import { signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import useLoginModal from '@/app/hooks/useLoginModal';
 
 interface SlideDownMenuProps {
     onClick?: () => void;
@@ -26,18 +28,23 @@ const SlideDownMenu: React.FC<SlideDownMenuProps> = ({
     // Use the useMediaQuery hook to detect the screen size
     const isXlScreen = useMediaQuery('(min-width: 1280px)');
     const registerModal = useRegisterModal();
+    const router = useRouter();
+    const loginModal = useLoginModal();
 
-    const handleOnClick = () => {
-        onClick && onClick();
+    const handleOnClick = (item: string) => {
+        if(item === 'login') {
+            loginModal.open();
+            return;
+        }
+        router.push(`/${item}`);
     };
 
     const menuItems = [
-        { title: "DASHBOARD", link: "#", isArrow: false },
-        { title: "STORE", link: "#", isArrow: true },
-        { title: "SALE", link: "#", isArrow: false },
-        { title: "ADOPTION", link: "#", isArrow: true },
-        { title: "PAIRING", link: "#", isArrow: false },
-        { title: "MORE", link: "#", isArrow: false },
+        { title: "DASHBOARD", id: 'account', link: "/account", isArrow: false },
+        { title: "STORE", link: "#", id: 'store', isArrow: true },
+        { title: "PETS", link: "#", id: 'pets', isArrow: false },
+        { title: "MORE", link: "#", id: 'more', isArrow: true },
+        { title: "LOGIN", link: "#", id: 'login', isArrow: true },
     ];
 
 
@@ -49,13 +56,13 @@ const SlideDownMenu: React.FC<SlideDownMenuProps> = ({
         >
             {/* Welcome message */}
             <div className='justify-start text-2xl text-white items-start px-8 pt-7'>
-                {currentUser ? (<i>WELCOME, {currentUser?.name}!</i>) : (<i>WELCOME, GUEST!</i>)}
+                {currentUser ? (<i>WELCOME, {currentUser?.email}!</i>) : (<i>WELCOME, GUEST!</i>)}
             </div>
 
             {/* Add the "hidden" class to the component when the screen size is "xl" or larger */}
             <ul className="h-full flex flex-col text-xl text-white items-start gap-6 mx-auto xl:px-40 md:px-7 sm:px-7 p-8 pb-0 justify-top">
                 {menuItems && menuItems.map((item, index) => (
-                    <div key={index} className='flex flex-row justify-between w-full toolbar-item' onClick={handleOnClick}>
+                    <div key={index} className='flex flex-row justify-between w-full toolbar-item' onClick={() => handleOnClick(item.id)}>
                         <li>
                             <a href={item.link}>{item.title}</a>
                         </li>

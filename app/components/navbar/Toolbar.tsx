@@ -16,7 +16,7 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 
 
 interface ToolbarProps {
-    onClick?: () => void;
+    onClick: () => void;
     currentUser?: SafeUser | null;
     isSmall?: boolean;
     logOut?: () => void;
@@ -54,10 +54,6 @@ const Toolbar: React.FC<ToolbarProps> = ({
     console.log("clicked cart");
   };
 
-  const handleClick = () => {
-    
-  };
-
   const handleMembershipButtonClick = () => {
     open();
   };
@@ -86,7 +82,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
         loginModal.open();
       } 
       else {  
-        // router.push("/dashboard");
+        router.push("/account");
       }
     }
 
@@ -112,7 +108,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
           <CartIcon 
             onClick={handleCartClick}
           />
-          <HamburgerMenu onClick={handleClick} />
+          <HamburgerMenu onClick={onClick} />
         
       </div>
     );
@@ -161,9 +157,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
             />
           )}
           </div>
-          <ToolbarItem  onClick={() => {router.push('/sale')}} title="SALE" />
-          <ToolbarItem  onClick={handleClick} title="ADOPTION"/>
-          <ToolbarItem  onClick={handleClick} title="PAIRING"/>
+          <ToolbarItem  onClick={() => {router.push('/sale')}} title="PETS" />
 
           <div 
             className="relative"
@@ -198,7 +192,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
         {currentUser?.id ? 
           <>
           <ButtonMembership onClick={logOut} outline={outline} title="LOG OUT"/>
-          <p className="text-white">Hi, {currentUser?.name?.slice(0, 9)}..!</p>
+          <p className="text-white">Hi, {currentUser?.email}!</p>
           </>
           :
           <ButtonMembership onClick={handleMembershipButtonClick} outline={outline} title="MEMBERSHIP"/>
