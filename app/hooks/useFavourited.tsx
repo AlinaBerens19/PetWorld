@@ -15,7 +15,6 @@ const useFavorite = ({ listingId, currentUser }: IUseFavourited) => {
 
     console.log("useFavorite executed");
 
-    const router = useRouter();
     const loginModal = useLoginModal();
     const [hasFavorited, setHasFavorited] = useState(
       currentUser?.favoriteIds?.includes(listingId) || false

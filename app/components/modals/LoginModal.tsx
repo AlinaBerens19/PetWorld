@@ -11,7 +11,6 @@ import {
 import { useCallback, useState } from "react";
 import 'react-phone-number-input/style.css'
 import { toast } from "react-hot-toast";
-import axios from "axios";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import Footer from "./components/Footer";
 import { useRouter } from "next/navigation";

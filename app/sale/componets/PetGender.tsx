@@ -26,7 +26,8 @@ const PetGender: React.FC<Props> = ({
 
       <div id="male" onClick={() => handleClick("male")}>
         <div className={`text-medium text-lg cursor-pointer
-            ${clicked ? "text-neutral-500" : "text-primary-500"}
+            ${clicked ? "text-neutral-500" : "text-green-700"}
+            ${clicked ? "text-lg" : "text-xl"}
         `}>
             MALE
         </div>
@@ -36,7 +37,8 @@ const PetGender: React.FC<Props> = ({
 
       <div id="femail" onClick={() => handleClick("femail")}>
         <div className={`text-medium text-lg cursor-pointer
-            ${clicked ? "text-primary-600" : "text-neutral-500"}
+            ${clicked ? "text-green-700" : "text-neutral-500"}
+            ${clicked ? "text-xl" : "text-lg"}
         `}>
             FEMAIL
         </div>

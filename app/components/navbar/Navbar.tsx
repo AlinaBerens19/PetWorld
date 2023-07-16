@@ -45,8 +45,8 @@ const Navbar: React.FC<NavbarProps> = ({
       
       {/* Navbar component */}
       <div className="fixed w-full z-40 navbar">
-        <div className="xl:py-5 md:py-4 sm:py-4 py-3">
-          <Container>
+        <div className="xl:py-5 md:py-4 sm:py-4 py-3 px-5 sm:px-10">
+          {/* <Container> */}
             <div className="flex flex-col">
               <div className="flex flex-row items-center justify-between sm:justify-start gap-3 md:gap-0">
                 <div className="pe-20 ps-4">
@@ -59,7 +59,7 @@ const Navbar: React.FC<NavbarProps> = ({
             </div>
             {showMenu && <SlideDownMenu logOut={logOut} currentUser={currentUser} showMenu={showMenu} handleSearchClick={handleMenuItemClick}/>}
             
-          </Container>
+          {/* </Container> */}
         </div>
       </div>
 

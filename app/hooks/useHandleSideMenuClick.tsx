@@ -42,6 +42,11 @@ const useGlobalStore = create((set) => ({
       router.push(`/account`);
     }
 
+    if (item === 'Wishlist') {
+      console.log('wishlist');
+      router.push(`/wishlist`);
+    }
+
     if (item === 'Password') {
       console.log('password');
       router.push(`/password`);

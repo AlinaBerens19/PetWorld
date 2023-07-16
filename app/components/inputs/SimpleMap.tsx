@@ -1,13 +1,17 @@
 'use client';
 
 
-import { useLoadScript, GoogleMap, LoadScript } from '@react-google-maps/api';
+import { useLoadScript, GoogleMap } from '@react-google-maps/api';
 import type { NextPage } from 'next';
 import { useMemo, useState } from 'react';
 import { getGeocode, getLatLng } from 'use-places-autocomplete';
 import PlacesAutocomplete from './PlacesAutocomplete';
 
-const SimpleMap: NextPage = () => {
+interface SimpleMapProps {
+  onLocationSelect: (lat: number, lng: number) => void;
+}
+
+const SimpleMap: NextPage<SimpleMapProps> = ({ onLocationSelect }) => {
   const [lat, setLat] = useState(27.672932021393862);
   const [lng, setLng] = useState(85.31184012689732);
 
@@ -25,7 +29,7 @@ const SimpleMap: NextPage = () => {
 
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyDZoXDJwAFWzO6k_q6d2D4g_qpHB80o0yg',
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string,
     libraries: libraries as any,
   });
 
@@ -44,6 +48,7 @@ const SimpleMap: NextPage = () => {
 
                 setLat(lat);
                 setLng(lng);
+                onLocationSelect(lat, lng);
               });
             }}
           />

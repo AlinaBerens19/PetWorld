@@ -1,22 +1,23 @@
+
 import ClientOnly from "../ClientOnly";
+import getFavoritedPetsList from "../actions/getFavoritedPets";
 import { getCurrentUser } from "../actions/getServerSession";
 import Container from "../components/Container";
-import Dashboard from "./components/Dashboard";
+import Wishlist from "./components/Wishlist";
 
 
-const AccountPage = async () => {
+const WishlistPage = async () => {
 
     const currentUser = await getCurrentUser();
-    
+    const listings = await getFavoritedPetsList({ currentUser })
+
     return (
         <ClientOnly>
             <Container>
-                <Dashboard currentUser={currentUser} image={currentUser?.image}/>
+                <Wishlist currentUser={currentUser} listings={listings}/>
             </Container>
         </ClientOnly>
     )
-
-
 }
 
-export default AccountPage;
+export default WishlistPage;

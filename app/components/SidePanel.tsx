@@ -32,6 +32,14 @@ const SidePanel: React.FC<SidePanelProps> = ({
             </div>
 
             <div 
+              id="Wishlist"
+              className="w-full py-4 px-4 justify-start border-b cursor-pointer hover:text-yellow-500"
+              onClick={() => handleSideMenuClick("Wishlist")}
+            >
+              Wishlist
+            </div>
+
+            <div 
               id="CreateAd"
               className="w-full py-4 px-4 justify-start border-b cursor-pointer hover:text-yellow-500"
               onClick={() => handleSideMenuClick("CreateAd")}

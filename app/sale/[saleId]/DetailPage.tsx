@@ -3,9 +3,9 @@
 
 import useFavorite from "@/app/hooks/useFavourited";
 import { SafeUser } from "@/app/types"
-import { BiHeart, BiMapPin, BiMessage, BiPhone } from "react-icons/bi";
+import { BiMapPin, BiMessage, BiPhone } from "react-icons/bi";
 import HeartButton from "../componets/HeartButton";
-import { set } from "date-fns";
+
 
 interface DetailPageProps {
   location?: string | null;
@@ -42,36 +42,35 @@ const DetailPage: React.FC<DetailPageProps> = ({
 
     return (
       <div className="max-w-screen-lg mx-auto">
-        <div className="flex flex-col px-4 py-20">
+        <div className="flex flex-col px-4 py-20 gap-1">
 
-        <div className="flex flex-row w-full gap-1"> 
-          <img
-            src={firstImage ? firstImage : ''}
-            alt={pet_name ? pet_name : 'No Name'}
-            className="w-[100vh] h-1/2 object-contain pt-5 sm:rounded-tl-xl sm:rounded-bl-xl"
-          />
-
-          <div className="flex flex-col pt-5">
+        <div className="flex flex-row w-full pt-5 gap-1"> 
             <img
               src={firstImage ? firstImage : ''}
               alt={pet_name ? pet_name : 'No Name'}
-              className="w-[33vh] h-1/2 object-contain"
+              className="w-[100vh] h-[350px] object-cover sm:rounded-tl-xl"
+            />
+            <img
+              src={firstImage ? firstImage : ''}
+              alt={pet_name ? pet_name : 'No Name'}
+              className="w-[50vh] h-[350px] object-cover sm:rounded-tr-xl"
+            />
+          </div>
+            <div className="flex flex-row gap-1">
+            <img
+              src={firstImage ? firstImage : ''}
+              alt={pet_name ? pet_name : 'No Name'}
+              className="w-[75vh] h-[200px] object-cover sm:rounded-bl-xl"
             />
 
             <img
               src={firstImage ? firstImage : ''}
               alt={pet_name ? pet_name : 'No Name'}
-              className="w-[33vh] h-1/2 object-contain"
-            />
-
-            <img
-              src={firstImage ? firstImage : ''}
-              alt={pet_name ? pet_name : 'No Name'}
-              className="w-[33vh] h-1/2 object-contain rounded-br-xl"
+              className="w-[75vh] h-[200px] object-cover rounded-br-xl"
             />
           </div>
           
-        </div>
+        
 
             <div className="flex flex-col gap-4 pt-5">
 
@@ -86,12 +85,13 @@ const DetailPage: React.FC<DetailPageProps> = ({
               </div>
 
               <div className="flex flex-row items-center justify-start gap-4">
-                <BiMessage className="text-4xl text-neutral-600 cursor-pointer" />
-                <BiPhone className="text-4xl text-neutral-600 cursor-pointer" />
+                <BiMessage className="text-4xl text-neutral-300 cursor-pointer" />
+                <BiPhone className="text-4xl text-neutral-300 cursor-pointer" />
                 <HeartButton
                   onClick={(e: React.MouseEvent<HTMLDivElement>) => favorited.toggleFavorite(e)}
                   isClicked={favorited.hasFavorited}
-                  className="text-4xl text-neutral-600 cursor-pointer"
+                  onCard={false}
+                  className="text-4xl text-neutral-300 cursor-pointer"
                 />
 
               </div>  

@@ -60,7 +60,8 @@ const CreateAdModal = () => {
         category: '',
         description: '',
         price: 0,
-        location: '',
+        latitude: 0,
+        longitude: 0,
         gender: 'male',
         firstImage: '',
         secondImage: '',
@@ -68,6 +69,11 @@ const CreateAdModal = () => {
         fourthImage: '',
     },
   });
+
+  const handleLocationSelect = (lat: number, lng: number) => {
+    setValue('latitude', lat);
+    setValue('longitude', lng);
+  };
 
   const actionLabel = useMemo(() => {
     if (step === STEPS.PRICE) {
@@ -168,7 +174,7 @@ const CreateAdModal = () => {
         <div className="flex flex-col gap-2">
           <h3 className="text-neutral-600">Set location for your pet</h3>
           <div className="h-1/2 w-full">
-            <SimpleMap />
+            <SimpleMap onLocationSelect={handleLocationSelect} />
           </div>
         </div>
       </div>

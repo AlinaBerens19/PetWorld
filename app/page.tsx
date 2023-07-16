@@ -1,17 +1,16 @@
 
 import ClientOnly from "./ClientOnly";
-import Container from "./components/Container";
 import MapModal from "./components/modals/MapModal";
 import CategoriesModel from "./components/modals/CategoriesModel";
+import { SessionProvider, useSession } from "next-auth/react";
+
 
 export default async function Home() {
 
   return (
-    <ClientOnly>
-        <div className="flex flex-col w-full h-full">
-            <MapModal />
-            <CategoriesModel />
-        </div>
-    </ClientOnly>
+      <div className="flex flex-col w-full h-full">
+          <MapModal />
+          <CategoriesModel />
+      </div>
   );
 };

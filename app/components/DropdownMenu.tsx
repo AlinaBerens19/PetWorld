@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+'use client'
+
+import React, { useState, useRef, useEffect, forwardRef, ForwardedRef } from 'react';
 
 interface Props {
   id: string;
@@ -8,13 +10,10 @@ interface Props {
   style?: React.CSSProperties;
 }
 
-const DropdownMenu: React.FC<Props> = ({
-  id,
-  items,
-  isOpen,
-  onClick,
-  style
-}) => {
+const DropdownMenu: React.ForwardRefRenderFunction<HTMLDivElement, Props> = (
+  { id, items, isOpen, onClick, style },
+  ref
+) => {
   const [selectedItem, setSelectedItem] = useState(items[0]);
   const listRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -49,7 +48,7 @@ const DropdownMenu: React.FC<Props> = ({
     <div
       style={style}
       className="absolute z-50 top-10 w-72 bg-white rounded-md shadow-lg"
-      ref={menuRef}
+      ref={ref}
     >
       {isOpen && (
         <div className="absolute z-10 w-5/6 mt-2 shadow-lg bg-white transition">
@@ -80,4 +79,4 @@ const DropdownMenu: React.FC<Props> = ({
   );
 };
 
-export default DropdownMenu;
+export default forwardRef<HTMLDivElement, Props>(DropdownMenu);

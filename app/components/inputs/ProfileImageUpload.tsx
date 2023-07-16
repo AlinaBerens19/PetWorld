@@ -15,8 +15,9 @@ interface ProfileImageUploadProps {
   value: string;
   disabled?: boolean;
   size: number;
-  className?: string | undefined,
+  className?: string | undefined;
   register?: UseFormRegister<FieldValues> | undefined;
+  defaultImage?: string; // Add defaultImage prop
 }
 
 const ProfileImageUpload: React.FC<ProfileImageUploadProps> = ({
@@ -25,8 +26,11 @@ const ProfileImageUpload: React.FC<ProfileImageUploadProps> = ({
   disabled,
   className,
   size,
-  register
+  register,
+  defaultImage
 }) => {
+
+  console.log("defaultImage: ", defaultImage);
 
   const handleUpload = useCallback((result: { info: { secure_url: string; }; }) => {
     onChange(result.info.secure_url);
@@ -56,19 +60,20 @@ const ProfileImageUpload: React.FC<ProfileImageUploadProps> = ({
               className={className}
             />
             {
-              value && (
+              (value || defaultImage) && (
                 <div className="absolute inset-0 rounded-xl">
                   <Image
-                    id={value}
-                    alt = "Upload"
+                    id={value || defaultImage} // Use defaultImage if value is not provided
+                    alt="Upload"
                     fill
-                    style = {{ objectFit: 'cover' }}
-                    src = {value}
+                    style={{ objectFit: 'cover', borderRadius: 'inherit' }}
+                    src={value || defaultImage!} // Use defaultImage if value is not provided
                     {...register && register("image")}
                   />
                 </div>
               )
             }
+
           </div>
         ) 
     }}

@@ -27,9 +27,9 @@ const PetCard: React.FC<Props> = ({
   const favorited = useFavorite({ listingId: data?.id ?? "", currentUser: currentUser ?? null });
   const router = useRouter();
 
-  useEffect(() => {
-    console.log("DATA: ", data);
-  }, []);
+  // useEffect(() => {
+  //   console.log("DATA: ", data);
+  // }, []);
 
   return (
     <div className="col-span-1 bg-white rounded-lg">

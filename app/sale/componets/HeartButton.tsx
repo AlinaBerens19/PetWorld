@@ -10,7 +10,7 @@ interface Props {
 const HeartButton: React.FC<Props> = ({
   onClick,
   isClicked,
-  onCard = false,
+  onCard,
   className,
 }) => {
   console.log("IS CLICKED IN HEART BUTTON ==> ", isClicked);
@@ -18,8 +18,7 @@ const HeartButton: React.FC<Props> = ({
   return (
     <div
       className={`${className} 
-        ${isClicked && onCard == true ? 'text-rose-700' : 'text-white'}
-        ${isClicked && onCard == false ? 'text-rose-700' : 'text-neutral-700'}
+        ${isClicked ? 'text-rose-700' : 'text-neutral-300'}
         `}
       onClick={(e: React.MouseEvent<HTMLDivElement>) => onClick(e)}
     >

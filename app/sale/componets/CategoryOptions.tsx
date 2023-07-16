@@ -41,7 +41,7 @@ const CategoryOptions: React.FC<CategoryOptionsProps> = ({
       <div
         id="sale"
         className={`flex flex-row gap-3 ${
-          clickedStates.sale ? "text-black" : "text-neutral-500"
+          clickedStates.sale ? "text-green-700" : "text-neutral-500"
         }`}
         onClick={() => {
           onSearchChange("sale");
@@ -51,7 +51,7 @@ const CategoryOptions: React.FC<CategoryOptionsProps> = ({
         <div className="text-lg font-medium">SALE</div>
         <BiMoney
           className={`text-3xl ${
-            clickedStates.sale ? "text-black" : "text-neutral-400"
+            clickedStates.sale ? "text-green-700" : "text-neutral-400"
           } cursor-pointer`}
         />
       </div>
@@ -59,7 +59,7 @@ const CategoryOptions: React.FC<CategoryOptionsProps> = ({
       <div
         id="pairing"
         className={`flex flex-row gap-3 ${
-          clickedStates.pairing ? "text-black" : "text-neutral-500"
+          clickedStates.pairing ? "text-green-700" : "text-neutral-500"
         }`}
         onClick={() => {
           onSearchChange("pairing");
@@ -69,7 +69,7 @@ const CategoryOptions: React.FC<CategoryOptionsProps> = ({
         <div className="text-lg font-medium">PAIRING</div>
         <BiHeartCircle
           className={`text-3xl ${
-            clickedStates.pairing ? "text-black" : "text-neutral-400"
+            clickedStates.pairing ? "text-green-700" : "text-neutral-400"
           } cursor-pointer`}
         />
       </div>
@@ -77,7 +77,7 @@ const CategoryOptions: React.FC<CategoryOptionsProps> = ({
       <div
         id="adoption"
         className={`flex flex-row gap-3 ${
-          clickedStates.adoption ? "text-black" : "text-neutral-500"
+          clickedStates.adoption ? "text-green-700" : "text-neutral-500"
         }`}
         onClick={() => {
           onSearchChange("adoption");
@@ -87,7 +87,7 @@ const CategoryOptions: React.FC<CategoryOptionsProps> = ({
         <div className="text-lg font-medium">ADOPTION</div>
         <BiHome
           className={`text-3xl ${
-            clickedStates.adoption ? "text-black" : "text-neutral-400"
+            clickedStates.adoption ? "text-green-700" : "text-neutral-400"
           } cursor-pointer`}
         />
       </div>

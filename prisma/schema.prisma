@@ -12,6 +12,8 @@ datasource db {
 
 model User {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  image         String?
   email         String    @unique
   emailVerified DateTime?
   password      String?
@@ -71,7 +73,8 @@ model Listing {
   age         Int?
   kind        String?
   breed       String?
-  location    String?
+  latitude    Float?
+  longitude   Float?
   imageSrc    String?
   firstImage  String?
   secondImage String?
@@ -84,15 +87,12 @@ model Listing {
 model Profile {
   id      String  @id @default(auto()) @map("_id") @db.ObjectId
   userId  String  @unique @db.ObjectId
-  name    String?
   phone   String?
-  email   String?
   surname String?
   country String?
   city    String?
   address String?
   zip     String?
-  image   String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

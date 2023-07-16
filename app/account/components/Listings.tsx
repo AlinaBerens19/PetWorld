@@ -5,7 +5,7 @@ import useCreateAd from "@/app/hooks/useCreateAd";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import { SafeUser } from "@/app/types";
 import { useRouter } from "next/navigation";
-import SidePanel from "./SidePanel";
+import SidePanel from "../../components/SidePanel";
 import PetCard from "@/app/components/modals/components/PetCard";
 import useGlobalStore from "@/app/hooks/useHandleSideMenuClick";
 
