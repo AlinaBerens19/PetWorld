@@ -6,7 +6,6 @@ import DownArrowButton from './DownArrowButton';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 import SearchModal from '../modals/SearchModal';
 import { SafeUser } from '@/app/types';
-import { signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import useLoginModal from '@/app/hooks/useLoginModal';
 
@@ -42,7 +41,7 @@ const SlideDownMenu: React.FC<SlideDownMenuProps> = ({
     const menuItems = [
         { title: "DASHBOARD", id: 'account', link: "/account", isArrow: false },
         { title: "STORE", link: "#", id: 'store', isArrow: true },
-        { title: "PETS", link: "#", id: 'pets', isArrow: false },
+        { title: "PETS", link: "#", id: 'sale', isArrow: false },
         { title: "MORE", link: "#", id: 'more', isArrow: true },
         { title: "LOGIN", link: "#", id: 'login', isArrow: true },
     ];

@@ -1,6 +1,6 @@
 
 import ClientOnly from "../ClientOnly";
-import getFavoritedPetsList from "../actions/getFavoritedPets";
+import getFavoritedPetsList from "../actions/pets/getFavoritedPets";
 import { getCurrentUser } from "../actions/getServerSession";
 import Container from "../components/Container";
 import Wishlist from "./components/Wishlist";

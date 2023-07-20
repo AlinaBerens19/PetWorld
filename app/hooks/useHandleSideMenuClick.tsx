@@ -42,6 +42,11 @@ const useGlobalStore = create((set) => ({
       router.push(`/account`);
     }
 
+    if (item === 'YourStore') {
+      console.log('yourStore');
+      router.push(`/store/${currentUser?.id}`);
+    }
+
     if (item === 'Wishlist') {
       console.log('wishlist');
       router.push(`/wishlist`);

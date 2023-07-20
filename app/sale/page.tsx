@@ -1,6 +1,6 @@
 import ClientOnly from "../ClientOnly"
-import getLastFivePets from "../actions/getLastFivePets"
-import getPetsForSale from "../actions/getPetsForSale"
+import getLastFivePets from "../actions/pets/getLastFivePets"
+import getPetsForSale from "../actions/pets/getPetsForSale"
 import { getCurrentUser } from "../actions/getServerSession"
 import Container from "../components/Container"
 import PetsPage from "./PetsPage"

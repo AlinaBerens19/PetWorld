@@ -18,6 +18,7 @@ interface ProfileImageUploadProps {
   className?: string | undefined;
   register?: UseFormRegister<FieldValues> | undefined;
   defaultImage?: string; // Add defaultImage prop
+  visible?: boolean;
 }
 
 const ProfileImageUpload: React.FC<ProfileImageUploadProps> = ({
@@ -27,14 +28,15 @@ const ProfileImageUpload: React.FC<ProfileImageUploadProps> = ({
   className,
   size,
   register,
-  defaultImage
+  defaultImage,
+  visible
 }) => {
 
-  console.log("defaultImage: ", defaultImage);
-
   const handleUpload = useCallback((result: { info: { secure_url: string; }; }) => {
-    onChange(result.info.secure_url);
-  }, [onChange]); 
+    const imageUrl = result.info.secure_url;
+    console.log('Image URL:', imageUrl); // Add this log to check the image URL
+    onChange(imageUrl);
+  }, [onChange]);
   
   const handleClick = (open: Function) => {
     if (!disabled) {
@@ -43,8 +45,8 @@ const ProfileImageUpload: React.FC<ProfileImageUploadProps> = ({
   };
 
   return (
-    <CldUploadWidget 
-      onUpload={handleUpload} 
+    <CldUploadWidget
+      onUpload={handleUpload}
       uploadPreset='nfmase2o'
       options={{
         maxFiles: 1
@@ -52,15 +54,13 @@ const ProfileImageUpload: React.FC<ProfileImageUploadProps> = ({
     >
       {({ open }) => {
         return (
-          <div
-            onClick={() => handleClick(open)}
-          >
+          <div onClick={() => handleClick(open)}>
             <TbPhotoPlus
               size={size}
               className={className}
             />
-            {
-              (value || defaultImage) && (
+            {value || defaultImage ? (
+              visible ? (
                 <div className="absolute inset-0 rounded-xl">
                   <Image
                     id={value || defaultImage} // Use defaultImage if value is not provided
@@ -71,12 +71,11 @@ const ProfileImageUpload: React.FC<ProfileImageUploadProps> = ({
                     {...register && register("image")}
                   />
                 </div>
-              )
-            }
-
+              ) : null
+            ) : null}
           </div>
-        ) 
-    }}
+        )
+      }}
     </CldUploadWidget>
   );
 }

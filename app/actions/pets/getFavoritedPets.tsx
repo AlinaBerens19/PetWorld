@@ -1,5 +1,5 @@
 import prisma from "@/app/libs/prismadb";
-import { SafeUser } from "../types";
+import { SafeUser } from "../../types";
 
 interface IParams {
   currentUser?: SafeUser | undefined | null;

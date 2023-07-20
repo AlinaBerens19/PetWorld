@@ -84,46 +84,6 @@ const Dashboard: React.FC<DashboardProps> = ({
       image: '',
     }
   });
-
-  // const onSubmit: SubmitHandler<FieldValues> = (data) => {
-  //   const userData = {
-  //     name: data.name,
-  //     phone: data.phone,
-  //     email: data.email,
-  //     image: data.image,
-  //   };
-  
-  //   const profileData = {
-  //     surname: data.surname,
-  //     address: data.address,
-  //     country: data.country,
-  //     city: data.city,
-  //     zip: data.zip,
-  //     userId: data.userId,
-  //   };
-  
-  //   const requestData = {
-  //     user: userData,
-  //     profile: profileData,
-  //   };
-  
-  //   axios
-  //     .post("/api/update-profile", requestData)
-  //     .then((res) => {
-  //       alert("User and profile updated");
-  //       console.log(res);
-  //       if (updateProfilePicture.isOpen) {
-  //         updateProfilePicture.close();
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       alert(`Error: ${err.response.data.message}`);
-  //       console.log(err);
-  //     })
-  //     .finally(() => {
-  //       console.log("done");
-  //     });
-  // };
   
   
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -179,14 +139,13 @@ const Dashboard: React.FC<DashboardProps> = ({
   };
   
 
-
   return (
     
     <div className="container mx-auto">
-      <div className="flex flex-col py-24 items-top sm:flex-row w-full h-screen px-8 justify-start gap-8">
+      <div className="flex flex-col items-top sm:flex-row w-full h-screen justify-center gap-8">
         <SidePanel currentUser={currentUser} handleSideMenuClick={handleSideMenuClick} />
 
-        <div className="w-full sm:basis-1/2 border-[1px]">
+        <div className="w-full h-fit py-4 sm:basis-1/2 border-[1px]">
           
 
           <div className="flex flex-col h-full">
@@ -203,6 +162,7 @@ const Dashboard: React.FC<DashboardProps> = ({
               className="w-36 h-36 rounded-xl text-md text-neutral-500 object-cover aspect-w-1 aspect-h-1"
               defaultImage={image ? image : 'https://res.cloudinary.com/dvnn8eun6/image/upload/v1688531401/avatar_dwhty4.png'}
               disabled={!updateProfilePicture.isOpen}
+              visible={true}
             />
 
             { updateProfilePicture.isOpen && (

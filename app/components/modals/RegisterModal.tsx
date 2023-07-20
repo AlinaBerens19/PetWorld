@@ -17,8 +17,6 @@ import { menuItems } from "@/app/utils";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import Footer from "./components/Footer";
 import useLoading from "@/app/hooks/useLoading";
-import ImageUpload from "../inputs/ImageUpload";
-import { watch } from "fs";
 
 
 const RegisterModal = () => {

@@ -15,7 +15,7 @@ const PetsFilter = () => {
   const [searchCategory, setSearchCategory] = useState("sale");
   const [searchGender, setSearchGender] = useState("femail");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [maxPrice, setMaxPrice] = useState(100);
+  const [maxPrice, setMaxPrice] = useState(15000);
   const [maxLocation, setMaxLocation] = useState(15000);
   const [priceRange, setPriceRange] = useState([0, maxPrice]);
   const [locationRange, setLocationRange] = useState([0, maxLocation]);

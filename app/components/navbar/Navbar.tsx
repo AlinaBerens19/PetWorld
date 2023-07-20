@@ -5,7 +5,7 @@ import Container from "../Container";
 import Logo from "./Logo";
 import Toolbar from "./Toolbar";
 import SlideDownMenu from "./SlideDownMenu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SafeUser } from "@/app/types";
 import SearchModal from "../modals/SearchModal";
 import useSearchModal from "@/app/hooks/useSearchModal";
@@ -25,10 +25,19 @@ const Navbar: React.FC<NavbarProps> = ({
   const isSmall = useScreenSizeDetector();
   const router = useRouter();
 
-  const logOut = () => {
-    signOut();
-    router.push('/');
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  const logOut = async () => {
+    setIsLoggingOut(true); // Set the flag to indicate that logout is in progress
+    await signOut();
+    setIsLoggingOut(false); // Reset the flag after logout is completed
   };
+
+  useEffect(() => {
+    if (isLoggingOut === false) {
+      router.push('/');
+    }
+  }, [isLoggingOut]);
 
   const handleMenuClick = () => {
     console.log("menu clicked");
@@ -45,11 +54,11 @@ const Navbar: React.FC<NavbarProps> = ({
       
       {/* Navbar component */}
       <div className="fixed w-full z-40 navbar">
-        <div className="xl:py-5 md:py-4 sm:py-4 py-3 px-5 sm:px-10">
+        <div className="xl:py-5 md:py-4 sm:py-4 py-3 px-10">
           {/* <Container> */}
             <div className="flex flex-col">
-              <div className="flex flex-row items-center justify-between sm:justify-start gap-3 md:gap-0">
-                <div className="pe-20 ps-4">
+              <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
+                <div className="pe-20 px-4">
                   <Logo />
                 </div>
                 

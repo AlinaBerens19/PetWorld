@@ -1,5 +1,5 @@
 import ClientOnly from "@/app/ClientOnly";
-import getPetForSaleById from "@/app/actions/getPetForSaleById";
+import getPetForSaleById from "@/app/actions/pets/getPetForSaleById";
 import { getCurrentUser } from "@/app/actions/getServerSession";
 import DetailPage from "./DetailPage";
 
@@ -24,7 +24,7 @@ const ListingPage = async ({ params }: { params: IParams}) => {
 
     return (
         <ClientOnly>
-          <DetailPage id={sale?.id} location={sale?.location} gender={sale?.gender} kind={sale.kind} breed={sale.breed} currentUser={currentUser} price={sale.price} firstImage={sale.firstImage} description={sale.description} />
+          <DetailPage id={sale?.id} gender={sale?.gender} kind={sale.kind} breed={sale.breed} currentUser={currentUser} price={sale.price} firstImage={sale.firstImage} description={sale.description} />
         </ClientOnly>
     )
 

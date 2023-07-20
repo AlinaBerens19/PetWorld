@@ -26,10 +26,17 @@ const PetCard: React.FC<Props> = ({
 
   const favorited = useFavorite({ listingId: data?.id ?? "", currentUser: currentUser ?? null });
   const router = useRouter();
+ 
+  const createdAtDate = new Date(data?.createdAt!); // Convert the createdAt date to a Date object
+  const today = new Date(); // Get the current date
 
-  // useEffect(() => {
-  //   console.log("DATA: ", data);
-  // }, []);
+  // Check if the createdAt date is today
+  const isToday = createdAtDate.toDateString() === today.toDateString() && createdAtDate.toDateString()
+
+  useEffect(() => {
+    console.log("Is today:", isToday);
+  }, [isToday]);
+
 
   return (
     <div className="col-span-1 bg-white rounded-lg">
@@ -44,7 +51,7 @@ const PetCard: React.FC<Props> = ({
                 className="sm:w-60 h-48 w-80 object-cover rounded-lg"
               />
               <HeartButton isClicked={favorited.hasFavorited} onCard={true} className={"absolute top-2 left-2 flex text-4xl"} onClick={(e: React.MouseEvent<HTMLDivElement>) => favorited.toggleFavorite(e)}/>
-              <NewButton />
+              {isToday && <NewButton />}
               <CallButton />
           </div>
           

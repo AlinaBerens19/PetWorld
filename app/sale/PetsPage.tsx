@@ -34,7 +34,7 @@ const PetsPage:React.FC<Params> = ({
     <div className="flex flex-col">
 
     <div className="flex flex-row h-min-screen">   
-        <div className="sm:w-full sm:pt-32 pt-20 sm:col-span-full grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-2 xl:divide-x px-4">
+        <div className="sm:w-full sm:col-span-full grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-2 xl:divide-x px-4">
         <div className="grid w-full justify-center sm:grid-cols-2 gap-4 pb-4">
             {getPets?.slice(0, 4).map((pet) => (
                 <div key={pet.id} className="w-full sm:w-auto">

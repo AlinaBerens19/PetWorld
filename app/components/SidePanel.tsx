@@ -13,7 +13,7 @@ const SidePanel: React.FC<SidePanelProps> = ({
 
 }) => {
   return (
-    <div className="w-full sm:basis-1/4 border-[1px]">
+    <div className="w-full h-fit sm:basis-1/4 border-[1px]">
           <div className="flex flex-col items-center justify-center">
 
             <div 
@@ -45,6 +45,14 @@ const SidePanel: React.FC<SidePanelProps> = ({
               onClick={() => handleSideMenuClick("CreateAd")}
             >
               Create Ad
+            </div>
+
+            <div 
+              id="Your Store"
+              className="w-full py-4 px-4 justify-start border-b cursor-pointer hover:text-yellow-500"
+              onClick={() => handleSideMenuClick("YourStore")}
+            >
+              Your store
             </div>
               
             <div className="w-full py-4 px-4 justify-start border-b cursor-pointer hover:text-yellow-500">

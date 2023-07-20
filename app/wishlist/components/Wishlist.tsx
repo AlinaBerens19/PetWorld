@@ -41,7 +41,7 @@ const Wishlist: React.FC<WishlistProps> = ({
     <div className="container mx-auto">
         <div className="flex flex-col py-24 items-top sm:flex-row w-full h-screen px-8 justify-start gap-4">
             <SidePanel currentUser={currentUser} handleSideMenuClick={handleSideMenuClick} />
-            <div className="w-full min-h-screen sm:basis-2/3 border-[1px]">
+            <div className="w-full min-h-screen sm:basis-2/3">
                 <div className="flex flex-col min-h-screen justify-start items-center pb-20 ">
                     <div className="flex flex-row items-center justify-center py-4">
                         <h1 className="text-3xl text-neutral-800 font-bold">Wishlist</h1>

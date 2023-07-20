@@ -33,6 +33,8 @@ const DetailPage: React.FC<DetailPageProps> = ({
   id
 }) => {
 
+    const phoneNumber = "+972543475847";
+
     console.log('CURRENT USER ==> ', currentUser)
     console.log('LISTING ID ==> ', id)
 
@@ -48,19 +50,19 @@ const DetailPage: React.FC<DetailPageProps> = ({
             <img
               src={firstImage ? firstImage : ''}
               alt={pet_name ? pet_name : 'No Name'}
-              className="w-[100vh] h-[350px] object-cover sm:rounded-tl-xl"
+              className="w-full sm:w-[100vh] h-[200px] sm:h-[350px] object-cover rounded-tl-xl"
             />
             <img
               src={firstImage ? firstImage : ''}
               alt={pet_name ? pet_name : 'No Name'}
-              className="w-[50vh] h-[350px] object-cover sm:rounded-tr-xl"
+              className="w-full sm:w-[50vh] h-[200px] sm:h-[350px] object-cover rounded-tr-xl"
             />
           </div>
             <div className="flex flex-row gap-1">
             <img
               src={firstImage ? firstImage : ''}
               alt={pet_name ? pet_name : 'No Name'}
-              className="w-[75vh] h-[200px] object-cover sm:rounded-bl-xl"
+              className="w-[75vh] h-[200px] object-cover rounded-bl-xl"
             />
 
             <img
@@ -85,13 +87,15 @@ const DetailPage: React.FC<DetailPageProps> = ({
               </div>
 
               <div className="flex flex-row items-center justify-start gap-4">
-                <BiMessage className="text-4xl text-neutral-300 cursor-pointer" />
-                <BiPhone className="text-4xl text-neutral-300 cursor-pointer" />
+                <BiMessage className="text-4xl text-neutral-8300 cursor-pointer" />
+                <a href={`tel:${phoneNumber}`}>
+                  <BiPhone className="text-4xl text-neutral-800 cursor-pointer" />
+                </a>
                 <HeartButton
                   onClick={(e: React.MouseEvent<HTMLDivElement>) => favorited.toggleFavorite(e)}
                   isClicked={favorited.hasFavorited}
                   onCard={false}
-                  className="text-4xl text-neutral-300 cursor-pointer"
+                  className="text-4xl text-neutral-800 cursor-pointer"
                 />
 
               </div>  

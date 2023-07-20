@@ -1,7 +1,5 @@
-import ClientOnly from "@/app/ClientOnly";
-import getFilteredPetsList from "@/app/actions/getFilteredPetsList";
-import { getCurrentUser } from "@/app/actions/getServerSession";
-import Container from "@/app/components/Container";
+
+import getFilteredPetsList from "@/app/actions/pets/getFilteredPetsList";
 import SearchResults from "@/app/components/SearchResults";
 
 interface IParams {

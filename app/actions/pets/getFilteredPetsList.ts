@@ -1,7 +1,7 @@
 import prisma from "@/app/libs/prismadb";
 import { de } from "date-fns/locale";
 import { m } from "framer-motion";
-import calculateBoundingBox from "../utils/CalculateDistance";
+import calculateBoundingBox from "../../utils/CalculateDistance";
 
 interface IParams {
   user_input: string[];
@@ -89,7 +89,7 @@ export default async function getFilteredPetsList(params: IParams) {
         AND: [
           ...(filters || []),
           priceFilter,
-          locationFilter
+          // locationFilter
         ],
       },
     });

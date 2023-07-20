@@ -1,4 +1,4 @@
-import getFilteredPetsList from "@/app/actions/getFilteredPetsList";
+import getFilteredPetsList from "@/app/actions/pets/getFilteredPetsList";
 import SearchResults from "@/app/components/SearchResults";
 
 const DogsPage = async () => {
