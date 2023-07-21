@@ -3,7 +3,7 @@
 
 import useCreateAd from "@/app/hooks/useCreateAd";
 import useLoginModal from "@/app/hooks/useLoginModal";
-import { SafeUser } from "@/app/types";
+import { SafeStore, SafeUser } from "@/app/types";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
@@ -12,15 +12,18 @@ import SidePanel from "../../components/SidePanel";
 import useUpdateProfilePicture from "@/app/hooks/useUpdateProfilePicture";
 import ProfileImageUpload from "@/app/components/inputs/ProfileImageUpload";
 import useGlobalStore from "@/app/hooks/useHandleSideMenuClick";
+import { Store } from "@prisma/client";
 
 interface DashboardProps {
   currentUser?: SafeUser | undefined | null;
+  currentStore?: SafeStore | undefined | null;
   image?: string | undefined | null;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ 
   currentUser,
-  image
+  image,
+  currentStore
 }) => {
 
   const createAdModal = useCreateAd()
@@ -72,21 +75,24 @@ const Dashboard: React.FC<DashboardProps> = ({
     reset,
   } = useForm<FieldValues>({
     defaultValues: {
-      name: '',
-      description: '',
-      address: '',
-      country: '',
-      city: '',
-      zipCode: '',
-      phone: '',
-      email: currentUser?.email || '',
+      name: currentStore?.name,
+      description: currentStore?.description,
+      address: currentStore?.address,
+      country: currentStore?.country,
+      city: currentStore?.city,
+      zipCode: currentStore?.zipCode,
+      phone: currentStore?.phone,
+      email: currentStore?.email,
       userId: currentUser?.id,
-      imageSrc: '',
+      imageSrc: currentStore?.imageSrc,
     }
   });
   
   
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+
+    console.log('USER ID ==>', data.userId);
+
     const storeData = {
       name: data.name,
       description: data.description,
@@ -99,9 +105,29 @@ const Dashboard: React.FC<DashboardProps> = ({
       imageSrc: data.imageSrc,
       userId: data.userId,
     };
+
+    if (!currentStore) {
+      axios
+      .post("/api/store/create", storeData)
+      .then((res) => {
+        alert("Store created");
+        console.log(res);
+        if (updateProfilePicture.isOpen) {
+          updateProfilePicture.close();
+        }
+      })
+      .catch((err) => {
+        alert(`Error: ${err.response.data.message}`);
+        console.log(err);
+      })
+      .finally(() => {
+        console.log("done");
+        router.push(`/store/${currentUser?.id}`);
+      });
+    }
   
     axios
-      .post("/api/store/update", storeData)
+      .put("/api/store/update", storeData)
       .then((res) => {
         alert("Store updated");
         console.log(res);
@@ -115,6 +141,7 @@ const Dashboard: React.FC<DashboardProps> = ({
       })
       .finally(() => {
         console.log("done");
+        router.push(`/store/${currentUser?.id}`);
       });
   
   };

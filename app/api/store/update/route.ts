@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server';
 export async function PUT(request: Request) {
   try {
     const body = await request.json();
-    const { userId, name, description, imageSrc, category } = body;
+    const { userId, name, description, imageSrc, category, address, country, city, zipCode, email, phone } = body;
 
     const store = await prisma.store.findFirst({
       where: {
@@ -27,6 +27,12 @@ export async function PUT(request: Request) {
         description,
         imageSrc,
         category,
+        address,
+        country,
+        city,
+        zipCode,
+        email,
+        phone,
       },
     });
 

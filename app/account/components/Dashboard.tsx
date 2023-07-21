@@ -135,6 +135,7 @@ const Dashboard: React.FC<DashboardProps> = ({
       })
       .finally(() => {
         console.log("done");
+        router.push(`/account`);
       });
   };
   

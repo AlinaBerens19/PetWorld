@@ -56,6 +56,11 @@ const useGlobalStore = create((set) => ({
       console.log('password');
       router.push(`/password`);
     }
+
+    else {
+      console.log('your pets');
+      router.refresh();
+    }
   },
 }));
 

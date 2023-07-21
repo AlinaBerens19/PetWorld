@@ -25,7 +25,7 @@ model User {
   posts         Listing[]
   profile       Profile?
   accounts      Account[]
-  stores        Store[]
+  store         Store?
   sessions      Session[]
 }
 
@@ -50,7 +50,7 @@ model Account {
 
 model Store {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId       String   @db.ObjectId
+  userId       String   @db.ObjectId @unique
   name         String?  @unique
   description  String?
   imageSrc     String?
@@ -61,7 +61,7 @@ model Store {
   zipCode      String?
   email        String?
   phone        String?
-  storeItems   StoreItem[]
+  storeItem    StoreItem[]
 
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
